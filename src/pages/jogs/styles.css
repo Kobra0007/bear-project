@@ -1,0 +1,27 @@
+.nothing {
+    font-family: SFUIText;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: #b0b0b0;
+    margin: 47px 0 150px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.btn {
+    width: 249px;
+    height: 60px;
+    border-radius: 36px;
+    border: solid 3px #e990f9;
+    background: #ffffff;;
+    margin: 0 auto;
+    color: #e990f9;
+    display: flex;
+    justify-content: center;
+}

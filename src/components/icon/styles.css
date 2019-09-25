@@ -1,0 +1,35 @@
+.icon {
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.bear-face{
+    background-image: url("../../assets/icons/bear-face.svg");
+}
+
+.filter-active{
+    background-image: url("../../assets/icons/filter-active.svg");
+}
+
+.filter{
+    background-image: url("../../assets/icons/filter.svg");
+}
+
+.logo{
+    background-image: url("../../assets/icons/logo.svg");
+}
+
+.sad-emoticon{
+    background-image: url("../../assets/icons/sad-rounded-square-emoticon.svg");
+}
+
+.icon-jog{
+    background-image: url("../../assets/icons/icon-jog.svg");
+}
+
+.add{
+    background-image: url("../../assets/icons/add.svg");
+}

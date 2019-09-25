@@ -1,0 +1,7 @@
+@import '../../variables.css';
+
+.divider {
+	margin: calc(var(--grid-padding) * 2) 0;
+	width: 100%;
+	border-bottom: 1px solid var(--cloudy-blue);
+}
