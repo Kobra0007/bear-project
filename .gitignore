@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+dist/bundle.js
+dist/.svg
+.idea
+.vscode
+*.log
+.DS_Store
+*.ini
