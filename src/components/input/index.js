@@ -8,8 +8,8 @@ import Text from '../text';
 
 export default function Input ({ type, className, label, ...selfProps }) {
     return (
-        <label>
-            <Text>{label}</Text>
+        <label className={classes.label}>
+            <Text className={classes.description}>{label}</Text>
             <input 
                 className={classnames( classes.input, className, {
                     [classes[type]]: true,

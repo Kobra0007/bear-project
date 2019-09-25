@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import {NavLink as Link} from 'react-router-dom';
 
-import Icon from '../icon';
-import Divider from '../divider';
+
+const Nav = styled.nav`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 45pt;
+`;
 
 const MenuToggle = styled.div`	
 	display: block;
-	position: absolute;
-    top: 18px;
-    right: 20px;
-	
-	z-index: 11;
-	
-	
+	position: relative;
+	top: 3px;
 	-webkit-user-select: none;
 	user-select: none;
 	
@@ -21,7 +22,7 @@ const MenuToggle = styled.div`
 		width: 40px;
 		height: 32px;
 		position: absolute;
-		top: -7px;
+		top: -2px;
 		left: -5px;
 		
 		cursor: pointer;
@@ -32,18 +33,14 @@ const MenuToggle = styled.div`
 		-webkit-touch-callout: none;
 	}
 
-	.divider {
-		margin: 5px 0;
-	}
-
 	.burgerIcon {
 		display: block;
 		width: 33px;
-		height: 4px;
+		height: 5px;
 		margin-bottom: 5px;
 		position: relative;
 		
-		background: #606060;
+		background: #ffffff;
 		border-radius: 3px;
 		
 		z-index: 1;
@@ -61,8 +58,8 @@ const MenuToggle = styled.div`
 	 */
 	input:checked ~ span {
 		opacity: 1;
-		transform: rotate(45deg) translate(-2px, -1px);
-		background: #232323;
+		transform: rotate(45deg) translate(3px, -1px);
+		background: #b0abab;
 	}
 
 	/*
@@ -85,12 +82,16 @@ const MenuToggle = styled.div`
 	 * at the top left of the screen
 	 */
 	ul {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		background-color: #ffff;
 		position: absolute;
 		top: 0px;
 		right: -20px;
-		width: 300px;
-		margin: -100px 0 0 -50px;
+		width: 100vw;
+		height: 100vh
+		margin: -46px 0 0 -50px;
 		padding: 25px;
 		padding-top: 120px;
 		box-shadow: 0 4px 8px 0 rgba(26, 26, 26, 0.1);
@@ -103,69 +104,84 @@ const MenuToggle = styled.div`
 		transform: translate(0, -100%);
 		
 		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-	}
 
-	ul a {
-		display: block;
-	}
-	ul button {
-		&:nth-child(n) {
-			display: inline-flex;
-			margin-top: 10px;		
-			margin-right: 10px;	
+		@media only screen and ( max-width: 575px) {
+			right: -12px;
 		}
 	}
-	ul a li {
-		padding: 10px 0;
-		font-size: 1.0em;
-		display: inline-block;
-		color: black;
-	}
-	
-	ul a span {
-		display: inline-block;
-		position: relative;
-		top: 3px;
+
+	ul li {
+		text-align: center;
+		margin-bottom: 25px;
 	}
 
-	/*
-	 * And let's slide it in from the left
-	 */
 	input:checked ~ ul {
 		transform: none;
 	}
 `;
 
-const BurgerMenu = ({}) => {
+const NLink = styled(Link)`
+	text-decoration: none;
+	font-size: 26px;
+    font-family: SFUIText;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+	letter-spacing: normal;
+	color: #333333;
+	
+	&:visited {
+		color: #333333;
+	}
+
+	&.active {
+		color: #7ed321;
+	}
+
+`;
+
+
+
+export default function BurgerMenu () {
+
+	let inputCheckbox = React.createRef();
+
+	function handleClick () {
+		inputCheckbox.current.checked = false;
+	}
+
 	return (
-		<nav className="burgerMenu" role="navigation">
+		<Nav role="navigation">
 			<MenuToggle>
 
-				<input type="checkbox" />
+				<input type="checkbox" ref={inputCheckbox}/>
 
 				<span className="burgerIcon"></span>
 				<span className="burgerIcon"></span>
 				<span className="burgerIcon"></span>
 
 				<ul id="menu">
-					<a href="/jogs">
-						<li>JOGS</li>
-					</a>
-					<Divider className="divider"/>
+					<li>
+						<NLink to="/jogs" onClick={handleClick}>
+							JOGS
+						</NLink>
+					</li>
 
-					<a href="/about-us">
-						<li>INFO</li>
-					</a>
-					<Divider className="divider"/>
+					<li>
+						<NLink to="/about-us" onClick={handleClick}>
+							INFO
+						</NLink>
+					</li>
 
-					<a href="/contact-us">
-						<li>CONTACT US</li>
-					</a>
+					<li>
+						<NLink to="/contact-us" onClick={handleClick}>
+							CONTACT US
+						</NLink>
+					</li>
 
 				</ul>
 			</MenuToggle>
-		</nav>
+		</Nav>
 	);
 }
-
-export default BurgerMenu;

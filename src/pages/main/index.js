@@ -26,12 +26,11 @@ function AboutUs (props) {
             </Helmet>
             <Row>
                 <Col xs={12}>
-                    <AddJog />
-                    d
-                    {/* <Card className={classes.card}>
+                    {/* <AddJog /> */}
+                    <Card className={classes.card}>
                         <Icon type="bear-face" size={160} className={classes.icon} />
                         <Button className={classes.btn} onClick={() => alert('lol')}>Let me in</Button>
-                    </Card> */}
+                    </Card>
                 </Col>
             </Row>
         </Fragment>

@@ -26,7 +26,8 @@ class AddJog extends Component {
 
     };
     render() {
-        const {} = this.props;
+        const { cancel } = this.props;
+        console.log(this.props);
         return (
             <Fragment>
                     <Helmet>
@@ -39,11 +40,12 @@ class AddJog extends Component {
                         />
                     </Helmet>
 
-                    <Card className={classes.card} onClick={this.props.cancel()}>
-                        <Input placeholder='speed' label='Distance' />
-                        <Input placeholder='time' label='Time' />
+                    <Card className={classes.card} >
+                        <Input placeholder='speed' label='Distance' className={classes.input}/>
+                        <Input placeholder='time' label='Time' className={classes.input}/>
                         <DatePicker label='Date' />
-                        <Button htmlType='submit'>Save</Button>
+                        <Button htmlType='submit' className={classes.btn}>Save</Button>
+                        <Icon type="cancel" size={27} className={classes.cancel} onClick={cancel}/>
                     </Card>
 
             </Fragment>
@@ -57,7 +59,7 @@ const mapStateToProps = ({ }) => ({
 
 const mapDispatchToProps = dispatch => ({
     cancel: () => dispatch(push('/jogs')),
-    // fetchInfo: payload => dispatch(recommendFetchInfoForMakeRecommend(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddJog);
+// export default AddJog;

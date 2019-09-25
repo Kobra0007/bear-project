@@ -33,3 +33,7 @@
 .add{
     background-image: url("../../assets/icons/add.svg");
 }
+
+.cancel{
+    background-image: url("../../assets/icons/cancel.svg");
+}

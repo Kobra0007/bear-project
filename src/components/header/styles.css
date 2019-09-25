@@ -26,14 +26,6 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-}
-
-.icon {
-    margin-right: 12px;
-    filter: brightness(0);
-}
-
-.link {
     color: var(--white);
     font-family: SFUIText;
     font-size: 14px;
@@ -45,13 +37,13 @@
     text-align: center;
 }
 
+.icon {
+    margin-right: 12px;
+    filter: brightness(0);
+}
+
 .active {
-    * {
-        color: var(--nice-blue);
-    }
-    & > span {
-        filter: brightness(1);
-    }
+    border-bottom: 2px solid #ffffff;
 }
 
 .logo {

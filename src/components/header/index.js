@@ -10,6 +10,7 @@ import Icon from '../icon';
 import Text from '../text';
 
 import DatePicker from '../datepicker';
+import BurgerMenu from '../burger';
 
 import classes from './styles.css';
 
@@ -21,6 +22,10 @@ const TopMenu = styled.div`
 	width: 100%;
 	padding: 30px 37px;
 	background: #7ed321;
+	
+	@media only screen and (max-width: 575px) {
+		padding: 30px 20px;
+	}
 `;
 
 const StyledHeader = styled.header`
@@ -29,6 +34,8 @@ const StyledHeader = styled.header`
 `;
 
 const SearchFieldsBlock = styled.div`
+	display: flex;
+	align-items: center;
 	height: 60px;
 	background-color: #eaeaea;
 	transition: transform .5s ease-in-out,opacity .5s ease-in-out,-webkit-transform .5s ease-in-out;
@@ -58,7 +65,7 @@ class Header extends React.Component {
 
 	render() {
 		const { filterActive } = this.state;
-
+		const { mobile = false} = this.props;
 		return (
 			<>
 				<StyledHeader>
@@ -70,37 +77,37 @@ class Header extends React.Component {
 						
 	
 							<Col style={{flexDirection:'row', display: 'flex'}}>
-								<nav className={classes.container}>
-									<ul className={classes.list}>
-	
-										<li>
-											<NavLink to="/jogs" className={classes.item} activeClassName={classes.active}>
-												<Text type="h4" className={classes.link}>
+								{!mobile && (
+									<nav className={classes.container}>
+										<ul className={classes.list}>
+		
+											<li>
+												<NavLink to="/jogs" className={classes.item} activeClassName={classes.active}>
 													JOGS
-												</Text>
-											</NavLink>
-										</li>
-	
-										<li>
-											<NavLink to="/about-us" className={classes.item} activeClassName={classes.active}>
-												<Text type="h4" className={classes.link}>
+												</NavLink>
+											</li>
+		
+											<li>
+												<NavLink to="/about-us" className={classes.item} activeClassName={classes.active}>
 													INFO
-												</Text>
-											</NavLink>
-										</li>
-	
-										<li>
-											<NavLink to="/contact-us" className={classes.item} activeClassName={classes.active}>
-												<Text type="h4" className={classes.link}>
+												</NavLink>
+											</li>
+		
+											<li>
+												<NavLink to="/contact-us" className={classes.item} activeClassName={classes.active}>
 													CONTACT US
-												</Text>
-											</NavLink>
-										</li>
-	
-									</ul>
-								</nav>
+												</NavLink>
+											</li>
+		
+										</ul>
+									</nav>
+								)}
 	
 								<Icon type={!filterActive ? "filter" : "filter-active"} size={39} onClick={this.toogleFilter} />
+
+								{mobile && (
+									<BurgerMenu />
+								)}
 	
 							</Col>
 						</Row>
@@ -109,11 +116,11 @@ class Header extends React.Component {
 	
 				<SearchFieldsBlock filterActive={filterActive}>
 					<Grid>
-						<Row center="xs">
+						<Row center="sm">
 							<Col>
 								<DatePicker label='Date From' />
 							</Col>
-							<Col>
+							<Col style={{marginLeft: '45px'}}>
 								<DatePicker label='Date To'/>
 							</Col>
 						</Row>

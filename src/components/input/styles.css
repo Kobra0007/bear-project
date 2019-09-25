@@ -1,9 +1,26 @@
 .input {
     outline: none;
     border-radius: 2px;
-    border: solid 1px #87898e;
+    border: solid 1px #979797;
     background: none;
     font-size: 14px;
     padding: 10px;
     line-height: 14px;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.description {
+    margin-right: 16px;
+    font-family: SFUIText;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
 }

@@ -16,6 +16,7 @@ const Info = styled(Text)`
     line-height: 1.71;
     letter-spacing: normal;
     margin-bottom: 40px;
+    text-align: initial;
     &:last-child {
         margin-bottom: 0px;
     }
@@ -31,6 +32,7 @@ const Title = styled(Text)`
     letter-spacing: normal;
     color: #7ed321
     margin-bottom: 15px;
+    text-align: initial;
 `;
 
 function AboutUs (props) {
@@ -46,7 +48,7 @@ function AboutUs (props) {
                     />
                 </Helmet>
                 <Row center="xs">
-                    <Col xs={6}>
+                    <Col xs={12} sm={6}>
                         <Title type='h1'>INFO</Title>
                         <Info>
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has

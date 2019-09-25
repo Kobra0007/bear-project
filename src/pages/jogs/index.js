@@ -32,11 +32,10 @@ function Jogs (props) {
                         content="jogs"
                     />
                 </Helmet>
-                {1 ? (
+                {0 ? (
                     <div>
-                        <h1>Jogs</h1>    
                         <Row center="xs">
-                            <Col xs={6}>
+                            <Col xs={3}>
                                 {counter.map((item, idx) => <Jog data={item} key={`jog-${idx}`} />)}
                             </Col>
                         </Row>
@@ -46,7 +45,7 @@ function Jogs (props) {
                     </div>
                 ) : (
                     <Row center="xs">
-                        <Col xs={5}>
+                        <Col md={5} xs={12} style={{marginTop: '200px'}}>
                             <Icon type='sad-emoticon' size={150} />
                             <Text className={classes.nothing}>Nothing is there</Text>
                             
