@@ -10,6 +10,10 @@
     background-image: url("../../assets/icons/bear-face.svg");
 }
 
+.bear-face-mobile{
+    background-image: url("../../assets/icons/bearFace.png");
+}
+
 .filter-active{
     background-image: url("../../assets/icons/filter-active.svg");
 }
@@ -20,6 +24,10 @@
 
 .logo{
     background-image: url("../../assets/icons/logo.svg");
+}
+
+.logo-mobile{
+    background-image: url("../../assets/icons/logo.png");
 }
 
 .sad-emoticon{

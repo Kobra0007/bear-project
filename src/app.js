@@ -37,12 +37,15 @@ const RoutesComponent = (props) => {
     )
 }
 
+export const AppContext = React.createContext();
 
 class App extends Component {
 
     constructor(props) {
 		super(props);
-	}
+    }
+    
+
 
     render() {
         const {
@@ -53,11 +56,13 @@ class App extends Component {
         } = this.props;
         
         const Layout = mobileDetect.mobile() ? MobileLayout : DesktopLayout;
-
+        
         return (
         <React.Fragment>
             <Layout>
-                <RoutesComponent />
+                <AppContext.Provider value={{mobile: !!mobileDetect.mobile()}} >
+                    <RoutesComponent />
+                </AppContext.Provider>
             </Layout>
         </React.Fragment>
         )

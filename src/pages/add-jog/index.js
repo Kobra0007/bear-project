@@ -27,7 +27,7 @@ class AddJog extends Component {
     };
     render() {
         const { cancel } = this.props;
-        console.log(this.props);
+
         return (
             <Fragment>
                     <Helmet>

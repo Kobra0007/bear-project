@@ -30,7 +30,7 @@ function getEnhancer(middlewares) {
 
     return composeEnhancers (
         applyMiddleware(...middlewares),
-        persistState(['user'], {
+        persistState(['user', 'jogs'], {
             key: LOCALSTORAGE_PATH
         })
     );

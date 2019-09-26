@@ -24,3 +24,9 @@
     display: flex;
     justify-content: center;
 }
+
+.btnMobile {
+    color: #e990f9;
+    background: #ffffff;
+    border-color: #e990f9;
+ }

@@ -35,13 +35,13 @@ function Jogs (props) {
                 {0 ? (
                     <div>
                         <Row center="xs">
-                            <Col xs={3}>
+                            <Col xs={12} sm={3}>
                                 {counter.map((item, idx) => <Jog data={item} key={`jog-${idx}`} />)}
                             </Col>
                         </Row>
-                            <Link to='/add-jog' className={classes.link}>
-                                <AddIcon type='add' size={60} />
-                            </Link>
+                        <Link to='/add-jog' className={classes.link}>
+                            <AddIcon type='add' size={60} />
+                        </Link>
                     </div>
                 ) : (
                     <Row center="xs">
