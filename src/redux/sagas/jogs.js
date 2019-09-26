@@ -39,9 +39,8 @@ function* getJ({payload}) {
 
 function* add({payload}) {
     try {
-        const res = yield* post('/data/jog', {
-            uuid: 'hello2'
-        });
+        console.log(payload)
+        const res = yield* post('/data/jog', payload);
         
         yield put(addJogSuccess(res.data.response));
     } catch (response) {
@@ -51,9 +50,7 @@ function* add({payload}) {
 
 function* delJog({payload}) {
     try {
-        const res = yield* del('/data/jog', {
-            uuid: 'hello2'
-        });
+        const res = yield* del('/data/jog', payload.id);
         
         yield put(deleteJogSuccess(res.data.response));
     } catch (response) {
@@ -63,9 +60,7 @@ function* delJog({payload}) {
 
 function* update({payload}) {
     try {
-        const res = yield* putAxios('/data/jog', {
-            uuid: 'hello2'
-        });
+        const res = yield* putAxios('/data/jog', payload);
         
         yield put(updateJogSuccess(res.data.response));
     } catch (response) {

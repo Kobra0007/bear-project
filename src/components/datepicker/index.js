@@ -46,15 +46,16 @@ class DatePicker extends React.Component {
 	};
 
 	render() {
-		const { label = ''} = this.props;
-		
+		const { label = '', ...selfProps} = this.props;
+
 		return (
 			<Block>
 				<Label>{label}</Label>
 				<DatePickerInputStyled
 					placeholder='Select date ...'
 					selected={this.state.startDate}
-					onChange={this.handleChange}
+					// onChange={this.handleChange}
+					{...selfProps}
 				/>
 			</Block>
 		);

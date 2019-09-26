@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styled, { css } from 'styled-components';
@@ -65,7 +66,8 @@ class Header extends React.Component {
 
 	render() {
 		const { filterActive } = this.state;
-		const { mobile = false} = this.props;
+		const { mobile = false, logged} = this.props;
+
 		return (
 			<>
 				<StyledHeader>
@@ -75,41 +77,43 @@ class Header extends React.Component {
 								<Icon type="logo" size={56} className={classes.logo} />
 							</Col>
 						
-	
-							<Col style={{flexDirection:'row', display: 'flex'}}>
-								{!mobile && (
-									<nav className={classes.container}>
-										<ul className={classes.list}>
+							{logged && (
+								<Col style={{flexDirection:'row', display: 'flex'}}>
+									{!mobile && (
+										<nav className={classes.container}>
+											<ul className={classes.list}>
+			
+												<li>
+													<NavLink to="/jogs" className={classes.item} activeClassName={classes.active}>
+														JOGS
+													</NavLink>
+												</li>
+			
+												<li>
+													<NavLink to="/about-us" className={classes.item} activeClassName={classes.active}>
+														INFO
+													</NavLink>
+												</li>
+			
+												<li>
+													<NavLink to="/contact-us" className={classes.item} activeClassName={classes.active}>
+														CONTACT US
+													</NavLink>
+												</li>
+			
+											</ul>
+										</nav>
+									)}
 		
-											<li>
-												<NavLink to="/jogs" className={classes.item} activeClassName={classes.active}>
-													JOGS
-												</NavLink>
-											</li>
-		
-											<li>
-												<NavLink to="/about-us" className={classes.item} activeClassName={classes.active}>
-													INFO
-												</NavLink>
-											</li>
-		
-											<li>
-												<NavLink to="/contact-us" className={classes.item} activeClassName={classes.active}>
-													CONTACT US
-												</NavLink>
-											</li>
-		
-										</ul>
-									</nav>
-								)}
-	
-								<Icon type={!filterActive ? "filter" : "filter-active"} size={39} onClick={this.toogleFilter} />
+									<Icon type={!filterActive ? "filter" : "filter-active"} size={39} onClick={this.toogleFilter} />
 
-								{mobile && (
-									<BurgerMenu />
-								)}
-	
-							</Col>
+									{mobile && (
+										<BurgerMenu />
+									)}
+		
+								</Col>
+							)}
+							
 						</Row>
 					</TopMenu>
 				</StyledHeader>
@@ -131,12 +135,12 @@ class Header extends React.Component {
 	}
 }
 
-Header.defaultProps = {
-	className: ''
-};
+const mapStateToProps = ({user}) => ({
+	logged: user.loggedIn
+});
 
-Header.propTypes = {
+const mapDispatchToProps = dispatch => ({
 
-};
+});
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

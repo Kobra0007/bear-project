@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Col, Row } from 'react-flexbox-grid';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
+import {withFormik} from 'formik';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styled, { css } from 'styled-components';
@@ -19,6 +20,74 @@ import DatePicker from '../../components/datepicker';
 
 import classes from './styles.css';
 
+import { addJog } from '../../redux/modules/jogs';
+
+
+const JogForm = props => {
+    const { 
+        cancel,
+        values,
+        touched,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit
+    } = props;
+    console.log(values);
+    return (
+            <form noValidate onSubmit={handleSubmit}>
+                <Input
+                    placeholder='speed'
+                    label='Distance'
+                    className={classes.input}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.speed}
+                    name="speed"
+                />
+
+                <Input
+                    placeholder='time'
+                    label='Time'
+                    className={classes.input}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.time}
+                    name="time"
+                />
+
+                <DatePicker
+                    label='Date'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.date}
+                    name="date"
+                />
+
+                <Button
+                    htmlType='submit'
+                    className={classes.btn}
+                >
+                    Save
+                </Button>
+
+                <Icon
+                    type="cancel"
+                    size={27}
+                    className={classes.cancel}
+                    onClick={cancel}
+                />
+            </form>
+    );
+};
+
+const MyForm = withFormik({
+	handleSubmit: (values, { props, setErrors, setSubmitting }) => {
+		props.onSubmit(values, { setErrors, setSubmitting });
+	},
+    mapPropsToValues: ({ data }) => ({ ...data }),
+    displayName: 'JogForm',
+})(JogForm);
 
 class AddJog extends Component {
 
@@ -26,7 +95,6 @@ class AddJog extends Component {
 
     };
     render() {
-        const { cancel } = this.props;
 
         return (
             <Fragment>
@@ -41,11 +109,9 @@ class AddJog extends Component {
                     </Helmet>
 
                     <Card className={classes.card} >
-                        <Input placeholder='speed' label='Distance' className={classes.input}/>
-                        <Input placeholder='time' label='Time' className={classes.input}/>
-                        <DatePicker label='Date' />
-                        <Button htmlType='submit' className={classes.btn}>Save</Button>
-                        <Icon type="cancel" size={27} className={classes.cancel} onClick={cancel}/>
+                        <MyForm 
+                            {...this.props}
+                        />
                     </Card>
 
             </Fragment>
@@ -59,7 +125,7 @@ const mapStateToProps = ({ }) => ({
 
 const mapDispatchToProps = dispatch => ({
     cancel: () => dispatch(push('/jogs')),
+    onSubmit: (payload) => dispatch(addJog(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddJog);
-// export default AddJog;
