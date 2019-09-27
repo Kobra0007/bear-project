@@ -17,7 +17,9 @@ export const {
 
     updateJog,
     updateJogFail,
-    updateJogSuccess
+    updateJogSuccess,
+
+    setCurrentJog
 
 } = createActions(
     'CLEAR_STATE',
@@ -38,12 +40,22 @@ export const {
     'UPDATE_JOG_FAIL',
     'UPDATE_JOG_SUCCESS',
 
+    'SET_CURRENT_JOG'
+
 );
 
 
 const defaultState = {
     error: null,
-    jogsArr: []
+    jogsArr: [],
+
+    current: {
+        id: '',
+        userId: '',
+        distance:'',
+        time: '',
+        date: ''
+    }
 };
 
 export default handleActions (
@@ -110,6 +122,11 @@ export default handleActions (
             ...state,
             error: null
         }),
+
+        [setCurrentJog]: (state, {payload}) => ({
+            ...state,
+            current: payload
+        })
     },
     defaultState
 );

@@ -8,12 +8,12 @@ import Icon from '../../components/icon';
 import Text from '../../components/text';
 
 import classes from './styles.css';
-export default function ({id, userId, distance, time, date}) {
+export default function ({id, userId, distance, time, date, onClick, ...selfProps}) {
 
     let dateJog = moment(date*1000).format('L').replace(/\//g,'.');
     
     return (
-        <div className={classes.wrapper}>
+        <div className={classes.wrapper} onClick={onClick}>
             <Icon type="icon-jog" size={87} className={classes.icon} />
             <div className={classes.information}>
                 <Text className={classes.time}>

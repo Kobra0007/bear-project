@@ -14,7 +14,7 @@ import Jog from '../../components/jog';
 import classes from './styles.css';
 import Button from '../../components/button';
 
-import { getJogs } from '../../redux/modules/jogs';
+import { getJogs, setCurrentJog } from '../../redux/modules/jogs';
 
 const AddIcon = styled(Icon)`
     position: fixed;
@@ -33,7 +33,7 @@ class Jogs extends Component {
 
     render() {
 
-        const { jogs } = this.props;
+        const { jogs, setCurrent } = this.props;
 
         return (
             <Fragment>
@@ -50,7 +50,7 @@ class Jogs extends Component {
                         <div>
                             <Row center="xs">
                                 <Col xs={12} sm={3}>
-                                    {jogs.map((item, idx) => <Jog {...item} key={`jog-${idx}`} />)}
+                                    {jogs.map((item, idx) => <Jog {...item} key={`jog-${idx}`} onClick={()=>setCurrent(item)} />)}
                                 </Col>
                             </Row>
                             <Link to='/add-jog' className={classes.link}>
@@ -80,7 +80,8 @@ const mapStateToProps = ({ jogs }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchData: () => dispatch(getJogs())
+    fetchData: () => dispatch(getJogs()),
+    setCurrent: (payload) => dispatch(setCurrentJog(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Jogs);
