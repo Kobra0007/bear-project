@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Col, Row } from 'react-flexbox-grid';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
+import 'moment/locale/ru';
 import {Helmet} from 'react-helmet';
 import {withFormik} from 'formik';
 import PropTypes from 'prop-types';
@@ -31,19 +33,20 @@ const JogForm = props => {
         errors,
         handleChange,
         handleBlur,
-        handleSubmit
+        handleSubmit,
+        setFieldValue,
     } = props;
-    console.log(values);
+
     return (
             <form noValidate onSubmit={handleSubmit}>
                 <Input
-                    placeholder='speed'
+                    placeholder='Distance'
                     label='Distance'
                     className={classes.input}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.speed}
-                    name="speed"
+                    value={values.distance}
+                    name="distance"
                 />
 
                 <Input
@@ -58,7 +61,7 @@ const JogForm = props => {
 
                 <DatePicker
                     label='Date'
-                    onChange={handleChange}
+                    onChange={( value ) => setFieldValue('date', moment(value).format('L'))}
                     onBlur={handleBlur}
                     value={values.date}
                     name="date"
@@ -95,7 +98,11 @@ class AddJog extends Component {
 
     };
     render() {
-
+        const formikData = {
+            distance: 0,
+            time: 0,
+            date: moment().format('L')
+        };
         return (
             <Fragment>
                     <Helmet>
@@ -111,6 +118,8 @@ class AddJog extends Component {
                     <Card className={classes.card} >
                         <MyForm 
                             {...this.props}
+                            data={{...formikData}}
+
                         />
                     </Card>
 

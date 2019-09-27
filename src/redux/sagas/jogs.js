@@ -25,13 +25,13 @@ import {
 } from '../modules/jogs';
 
 
-function* getJ({payload}) {
+function* fetchJogs({payload}) {
     try {
-        const res = yield* get('/data/jog', {
-            uuid: 'hello2'
-        });
+        const res = yield* get('/data/sync/');
+
+        const userJogs = res.data.response.jogs.filter(item => item.userId == 3);
         
-        yield put(getJogsSuccess(res.data.response));
+        yield put(getJogsSuccess(userJogs));
     } catch (response) {
         yield put(getJogsFail(response.data.errorMessage));
     }
@@ -39,7 +39,6 @@ function* getJ({payload}) {
 
 function* add({payload}) {
     try {
-        console.log(payload)
         const res = yield* post('/data/jog', payload);
         
         yield put(addJogSuccess(res.data.response));
@@ -70,7 +69,7 @@ function* update({payload}) {
 
 export default function* userSaga() {
     yield takeEvery(addJog.toString(), add);
-    yield takeEvery(getJogs.toString(), getJ);
+    yield takeEvery(getJogs.toString(), fetchJogs);
 	yield takeEvery(deleteJog.toString(), delJog);
 	yield takeEvery(updateJog.toString(), update);
 }

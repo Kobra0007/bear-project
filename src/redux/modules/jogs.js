@@ -43,6 +43,7 @@ export const {
 
 const defaultState = {
     error: null,
+    jogsArr: []
 };
 
 export default handleActions (
@@ -53,59 +54,61 @@ export default handleActions (
         }),
 
         [getJogs]: state => ({
-
+            error: null,
         }),
 
         [getJogsFail]: (state, {payload}) => ({
             ...state,
-            error
+            error: payload
         }),
 
         [getJogsSuccess]: (state, {payload}) => ({
             ...state,
-
+            error: null,
+            jogsArr: payload
         }),
 
         [addJog]: state => ({
-
+            error: null
         }),
 
         [addJogFail]: (state, {payload}) => ({
             ...state,
-            error
+            error: payload
         }),
 
         [addJogSuccess]: (state, {payload}) => ({
             ...state,
-
+            error: null
         }),
 
         [deleteJog]: state => ({
-
+            error: null
         }),
 
         [deleteJogFail]: (state, {payload}) => ({
             ...state,
-
+            error: payload
         }),
 
         [deleteJogSuccess]: (state, {payload}) => ({
             ...state,
+            error: null
 
         }),
 
         [updateJog]: state => ({
-
+            error: null
         }),
 
         [updateJogFail]: (state, {payload}) => ({
             ...state,
-
+            error: payload
         }),
 
         [updateJogSuccess]: (state, {payload}) => ({
             ...state,
-
+            error: null
         }),
     },
     defaultState

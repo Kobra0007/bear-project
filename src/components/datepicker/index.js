@@ -35,26 +35,16 @@ const DatePickerInputStyled = styled(DatePickerInput)`
 `;
 
 class DatePicker extends React.Component {
-	state = {
-		startDate: new Date()
-	};
-
-	handleChange = date => {
-		this.setState({
-			startDate: date
-		});
-	};
 
 	render() {
-		const { label = '', ...selfProps} = this.props;
+		const { label = '', value, ...selfProps} = this.props;
 
 		return (
 			<Block>
 				<Label>{label}</Label>
 				<DatePickerInputStyled
 					placeholder='Select date ...'
-					selected={this.state.startDate}
-					// onChange={this.handleChange}
+					selected={!!value ? new Date(value.split('.').reverse().join(',')) : new Date()}
 					{...selfProps}
 				/>
 			</Block>

@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import moment from 'moment';
+import 'moment/locale/ru';
 import { connect } from 'react-redux';
 import { Grid, Col, Row } from 'react-flexbox-grid';
 
@@ -6,25 +8,28 @@ import Icon from '../../components/icon';
 import Text from '../../components/text';
 
 import classes from './styles.css';
-export default function (props) {
+export default function ({id, userId, distance, time, date}) {
+
+    let dateJog = moment(date*1000).format('L').replace(/\//g,'.');
+    
     return (
         <div className={classes.wrapper}>
             <Icon type="icon-jog" size={87} className={classes.icon} />
             <div className={classes.information}>
                 <Text className={classes.time}>
-                    20.07.2019
+                    {dateJog}
                 </Text>
                 <Text className={classes.value}>
                     <span className={classes.param}>Speed:</span>&nbsp;
-                    15
+                    {Math.round(distance / (time / 60 ))} km/h
                 </Text>
                 <Text className={classes.value}>
                     <span className={classes.param}>Distance:</span>&nbsp;
-                    10km
+                    {distance} km
                 </Text>
                 <Text className={classes.value}>
                     <span className={classes.param}>Time:</span>&nbsp;
-                    60min
+                    {time} min
                 </Text>
             </div>
         </div>
