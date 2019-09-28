@@ -42,6 +42,7 @@ function* add({payload}) {
         const res = yield* post('/data/jog', payload);
         
         yield put(addJogSuccess(res.data.response));
+        yield put(push('/jogs'));
     } catch (response) {
         yield put(addJogFail(response.data.errorMessage));
     }
@@ -62,6 +63,7 @@ function* update({payload}) {
         const res = yield* putAxios('/data/jog', payload);
         
         yield put(updateJogSuccess(res.data.response));
+        yield put(push('/jogs'));
     } catch (response) {
         yield put(updateJogFail(response.data.errorMessage));
     }

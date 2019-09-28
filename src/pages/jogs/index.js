@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'react-flexbox-grid';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
@@ -49,7 +50,7 @@ class Jogs extends Component {
                     {jogs.length > 0 ? (
                         <div>
                             <Row center="xs">
-                                <Col xs={12} sm={3}>
+                                <Col xs={12} sm={12} md={6} lg={3}>
                                     {jogs.map((item, idx) => <Jog {...item} key={`jog-${idx}`} onClick={()=>setCurrent(item)} />)}
                                 </Col>
                             </Row>
@@ -81,7 +82,7 @@ const mapStateToProps = ({ jogs }) => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchData: () => dispatch(getJogs()),
-    setCurrent: (payload) => dispatch(setCurrentJog(payload))
+    setCurrent: (payload) => {dispatch(setCurrentJog(payload));dispatch(push(`/edit-jog`))}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Jogs);

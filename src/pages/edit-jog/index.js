@@ -86,7 +86,11 @@ const JogForm = props => {
 
 const MyForm = withFormik({
 	handleSubmit: (values, { props, setErrors, setSubmitting }) => {
-		props.onSubmit(values, { setErrors, setSubmitting });
+		props.onSubmit({
+            ...values,
+            jog_id: props.current.id,
+            user_id: props.current.userId
+        }, { setErrors, setSubmitting });
 	},
     mapPropsToValues: ({ data }) => ({ ...data }),
     displayName: 'JogForm',
@@ -98,11 +102,13 @@ class EditJog extends Component {
 
     };
     render() {
+        const {current: { id, userId, distance, time, date }} = this.props
         const formikData = {
-            distance: 0,
-            time: 0,
-            date: moment().format('L')
+            distance: distance,
+            time: time,
+            date: moment(date*1000).format('L')
         };
+
         return (
             <Fragment>
                     <Helmet>
@@ -128,8 +134,8 @@ class EditJog extends Component {
     }
 }
 
-const mapStateToProps = ({ }) => ({
-
+const mapStateToProps = ({ jogs }) => ({
+    current: jogs.current || {}
 });
 
 const mapDispatchToProps = dispatch => ({
