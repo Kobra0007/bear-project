@@ -1,7 +1,11 @@
-@import '../../variables.css';
-
 .divider {
-	margin: calc(var(--grid-padding) * 2) 0;
-	width: 100%;
-	border-bottom: 1px solid var(--cloudy-blue);
+	margin: 36pt -25pt 45pt;
+	border-bottom: 2pt solid #d7d7d7;
+	display: none;
+}
+
+@media only screen and ( max-width: 575px) {
+	.divider {
+		display: inherit;
+	}
 }

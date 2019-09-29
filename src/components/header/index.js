@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
+import { withRouter } from "react-router";
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styled, { css } from 'styled-components';
@@ -7,11 +8,12 @@ import {Link} from 'react-router-dom';
 import {NavLink} from 'react-router-dom';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 
-import Icon from '../icon';
-import Text from '../text';
 
-import DatePicker from '../datepicker';
+import Icon from '../icon';
+
 import BurgerMenu from '../burger';
+
+import SearchFields from './SearchFields';
 
 import classes from './styles.css';
 
@@ -32,6 +34,18 @@ const TopMenu = styled.div`
 const StyledHeader = styled.header`
 	position: relative;
 	height: 116px;
+	@media only screen and (max-width: 575px) {
+		height: 110px;
+	}
+`;
+
+const Logo = styled(Icon)`
+	width: 147px;
+
+	${props => props.burgerActive && css`
+		position: absolute;
+		z-index: 10;
+	`}
 `;
 
 const SearchFieldsBlock = styled.div`
@@ -56,25 +70,29 @@ class Header extends React.Component {
 		super(props);
 
 		this.state={
-			filterActive: false
+			filterActive: false,
+			burgerActive: false
 		}
 	}
 
 	toogleFilter = () => {
-		this.setState((prevState) => ({filterActive: !prevState.filterActive}));
+		const { location } = this.props;
+		if (location.pathname == '/jogs') {
+			this.setState((prevState) => ({filterActive: !prevState.filterActive}));
+		}
 	};
 
 	render() {
-		const { filterActive } = this.state;
+		const { filterActive, burgerActive } = this.state;
 		const { mobile = false, logged} = this.props;
 
 		return (
 			<>
-				<StyledHeader>
+				<StyledHeader mobile={mobile}>
 					<TopMenu>
 						<Row style={{justifyContent:'space-between'}}>
 							<Col>
-								<Icon type="logo" size={56} className={classes.logo} />
+								<Logo type={burgerActive ? 'logo-mobile' : 'logo'} size={mobile ? 50 : 56}  burgerActive={burgerActive}/>
 							</Col>
 						
 							{logged && (
@@ -108,7 +126,7 @@ class Header extends React.Component {
 									<Icon type={!filterActive ? "filter" : "filter-active"} size={39} onClick={this.toogleFilter} />
 
 									{mobile && (
-										<BurgerMenu />
+										<BurgerMenu burgerClick={() => this.setState((prevState) => ({burgerActive: !prevState.burgerActive}))}/>
 									)}
 		
 								</Col>
@@ -119,16 +137,7 @@ class Header extends React.Component {
 				</StyledHeader>
 	
 				<SearchFieldsBlock filterActive={filterActive}>
-					<Grid>
-						<Row center="sm">
-							<Col>
-								<DatePicker label='Date From' />
-							</Col>
-							<Col style={{marginLeft: '45px'}}>
-								<DatePicker label='Date To'/>
-							</Col>
-						</Row>
-					</Grid>
+					<SearchFields />
 				</SearchFieldsBlock>
 			</>
 		)
@@ -143,4 +152,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

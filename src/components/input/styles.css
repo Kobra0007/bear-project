@@ -11,6 +11,7 @@
 .label {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 25px;
 }
 
@@ -23,4 +24,17 @@
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
+}
+
+
+@media only screen and ( max-width: 575px) {
+    .label {
+        flex-direction: column;
+        margin-bottom: 20px;
+        align-items: flex-start;
+    }
+    .description {
+        margin-right: 0px;
+        margin-bottom: 6px;
+    }
 }

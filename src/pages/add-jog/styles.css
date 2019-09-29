@@ -15,6 +15,8 @@
 }
 
 .input {
+    height: 31px;
+    width: 236px;
     border-radius: 7px;
     background-color: #ffffff;
 }
@@ -29,4 +31,50 @@
     color: #ffffff;
     display: flex;
     justify-content: center;
+}
+
+.label {
+    margin-right: 16px;
+    font-family: SFUIText;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.datepicker {
+    height: 31px;
+    width: 236px;
+    border-radius: 7px;
+	border: solid 1px #979797;
+	background-color: #ffffff;
+    text-align: center;
+}
+
+@media only screen and ( max-width: 575px) {
+    .card {
+        margin-top: 82px;
+        max-width: 100%;
+        padding: 36px 35px;
+        border-radius: 29px;
+    }
+
+    .datepicker, .input, .block div {
+        width: 100%;
+    }
+
+    .block {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .cancel {
+        top: 21px;
+        right: 21px;
+        min-width: 21px !important;
+        min-height: 21px !important;
+    }
 }

@@ -61,6 +61,9 @@ const JogForm = props => {
 
                 <DatePicker
                     label='Date'
+                    wrapperClassName={classes.block}
+                    labelClassName={classes.label}
+                    datePickerClassName={classes.datepicker}
                     onChange={( value ) => setFieldValue('date', moment(value).format('L'))}
                     onBlur={handleBlur}
                     value={values.date}

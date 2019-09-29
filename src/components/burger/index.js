@@ -143,19 +143,20 @@ const NLink = styled(Link)`
 
 
 
-export default function BurgerMenu () {
+export default function BurgerMenu (props) {
 
 	let inputCheckbox = React.createRef();
 
 	function handleClick () {
 		inputCheckbox.current.checked = false;
+		props.burgerClick();
 	}
 
 	return (
 		<Nav role="navigation">
 			<MenuToggle>
 
-				<input type="checkbox" ref={inputCheckbox}/>
+				<input type="checkbox" ref={inputCheckbox} onClick={props.burgerClick} />
 
 				<span className="burgerIcon"></span>
 				<span className="burgerIcon"></span>

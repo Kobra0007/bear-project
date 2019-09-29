@@ -23,6 +23,17 @@ const AddIcon = styled(Icon)`
     right: 40px;
 `;
 
+const Column = styled(Col)`
+    margin-top: 200px;
+    @media only screen and (max-width: 575px) {
+        margin-top: 80px;
+        span {
+            min-width: 85px !important;
+            min-height: 85px !important;
+        }
+	}
+`;
+
 class Jogs extends Component {
 
     static propTypes = {
@@ -65,14 +76,14 @@ class Jogs extends Component {
                         </div>
                     ) : (
                         <Row center="xs">
-                            <Col md={5} xs={12} style={{marginTop: '200px'}}>
+                            <Column md={5} xs={12}>
                                 <Icon type='sad-emoticon' size={150} />
                                 <Text className={classes.nothing}>Nothing is there</Text>
                                 
                                 <Link to='/add-jog' className={classes.link}>
                                     <Button className={classes.btn}>Create your jog first</Button>
                                 </Link>
-                            </Col>
+                            </Column>
                         </Row>
                     )}
     

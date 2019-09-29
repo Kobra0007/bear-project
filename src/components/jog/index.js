@@ -6,6 +6,8 @@ import { Grid, Col, Row } from 'react-flexbox-grid';
 
 import Icon from '../../components/icon';
 import Text from '../../components/text';
+import Divider from '../../components/divider';
+
 
 import classes from './styles.css';
 export default function ({id, userId, distance, time, date, onClick, ...selfProps}) {
@@ -13,6 +15,7 @@ export default function ({id, userId, distance, time, date, onClick, ...selfProp
     let dateJog = moment(date*1000).format('L').replace(/\//g,'.');
     
     return (
+        <>
         <div className={classes.wrapper} onClick={onClick}>
             <Icon type="icon-jog" size={87} className={classes.icon} />
             <div className={classes.information}>
@@ -33,5 +36,7 @@ export default function ({id, userId, distance, time, date, onClick, ...selfProp
                 </Text>
             </div>
         </div>
+        <Divider />
+        </>
     );
 }

@@ -11,38 +11,20 @@ import Text from '../text';
 const Block = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 `;
 
-const Label = styled(Text)`
-	font-family: SFUIText;
-	font-size: 13px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	margin-right: 15px;
-	color: #979797;
-`;
-
-const DatePickerInputStyled = styled(DatePickerInput)`
-	width: 100px;
-	height: 31px;
-	border-radius: 11px;
-	border: solid 1px #979797;
-	background-color: #ffffff;
-	text-align: center;
-`;
 
 class DatePicker extends React.Component {
 
 	render() {
-		const { label = '', value, ...selfProps} = this.props;
-
+		const { label = '', wrapperClassName, labelClassName, datePickerClassName, value, ...selfProps} = this.props;
+		
 		return (
-			<Block>
-				<Label>{label}</Label>
-				<DatePickerInputStyled
+			<Block className={wrapperClassName}>
+				<Text className={labelClassName}>{label}</Text>
+				<DatePickerInput
+					className={datePickerClassName}
 					placeholder='Select date ...'
 					selected={!!value ? new Date(value.split('.').reverse().join(',')) : new Date()}
 					{...selfProps}

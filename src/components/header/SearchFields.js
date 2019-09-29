@@ -10,6 +10,8 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import { setSortedJogs } from '../../redux/modules/jogs';
 import DatePicker from '../datepicker';
 
+import classes from './styles.css';
+
 class SearchFields extends React.Component {
     constructor(props) {
         super(props);
@@ -42,7 +44,9 @@ class SearchFields extends React.Component {
                     <Row center="sm">
                         <Col>
                             <DatePicker
-                                label='Date From'
+                                label='Date from'
+                                labelClassName={classes.label}
+                                datePickerClassName={classes.datepicker}
                                 onBlur={this.sortJogs}
                                 onChange={(value) => this.handleChange(value, 'from')}
                                 value={from}
@@ -50,7 +54,9 @@ class SearchFields extends React.Component {
                         </Col>
                         <Col>
                             <DatePicker
-                                label='Date To'
+                                label='Date to'
+                                labelClassName={classnames(classes.label, classes.dateTo)}
+                                datePickerClassName={classes.datepicker}
                                 onBlur={this.sortJogs}
                                 onChange={(value) => this.handleChange(value, 'to')}
                                 value={to}

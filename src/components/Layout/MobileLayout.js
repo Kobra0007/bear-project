@@ -7,6 +7,7 @@ import Header from '../header';
 const ContentContainer = styled(Grid)`
 	min-height: calc(100vh - 116px);
 	position: relative;
+	padding: 0 25pt;
 `;
 
 class MainLayout extends React.Component {

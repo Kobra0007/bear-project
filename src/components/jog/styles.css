@@ -7,6 +7,7 @@
 
 .icon {
     margin-right: 46px;
+    margin-bottom: 9px;
 }
 
 .information {
@@ -23,6 +24,8 @@
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
+    color: #b0abab;
+    margin-bottom: 9px;
 }
 
 .value {
@@ -33,8 +36,22 @@
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
+    color: #979797;
+    margin-bottom: 9px;
 }
 
 .param {
     color:#000000
+}
+
+@media only screen and ( max-width: 575px) {
+    .wrapper {
+        margin-bottom: 0px;
+    }
+}
+
+@media only screen and ( max-width: 350px) {
+    .icon {
+        margin-right: 8px;
+    }
 }
