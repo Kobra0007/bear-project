@@ -15,7 +15,7 @@ import Jog from '../../components/jog';
 import classes from './styles.css';
 import Button from '../../components/button';
 
-import { getJogs, setCurrentJog } from '../../redux/modules/jogs';
+import { getJogs, setCurrentJog, delSortedJogs } from '../../redux/modules/jogs';
 
 const AddIcon = styled(Icon)`
     position: fixed;
@@ -28,9 +28,14 @@ class Jogs extends Component {
     static propTypes = {
         jogs: PropTypes.array.isRequired,
     };
+
     componentDidMount() {
         this.props.fetchData()
     };
+
+    componentWillUnmount(){
+        this.props.delSorted();
+    }
 
     render() {
 
@@ -77,12 +82,13 @@ class Jogs extends Component {
 }
 
 const mapStateToProps = ({ jogs }) => ({
-    jogs: jogs.jogsArr || []
+    jogs: jogs.sorted.length > 0 ?  jogs.sorted : jogs.jogsArr
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchData: () => dispatch(getJogs()),
-    setCurrent: (payload) => {dispatch(setCurrentJog(payload));dispatch(push(`/edit-jog`))}
+    setCurrent: (payload) => {dispatch(setCurrentJog(payload));dispatch(push(`/edit-jog`))},
+    delSorted: () => dispatch(delSortedJogs())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Jogs);

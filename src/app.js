@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import mainRoutes from './config/routes';
 
 // import NotFound from './pages/not-found';
@@ -8,25 +8,27 @@ import DesktopLayout from './components/Layout/DesktopLayout';
 import MobileLayout from './components/Layout/MobileLayout';
 
 const RoutesComponent = (props) => {
-    const { loadedForPageKey, ...restProps } = props;
+    const { loadedForPageKey, loggedIn, ...restProps } = props;
 
     return (
         <Switch>
-            {mainRoutes.map(({ path, exact, component: Component }) => {
-            
-                const pageKey = '';
-                
+            {mainRoutes.map(({ path, exact, component: Component, onEnter }) => {
+                            
                 return (
                     <Route
                         key={path}
                         path={path}
                         exact={exact}
                         render={props => (
-                            <Component 
-                                key={`pageKey`}
-                                match={props.match}
-                                {...restProps}
-                            />
+                           (onEnter && onEnter(loggedIn)) ? (	
+                                onEnter(loggedIn)
+                                ) : (
+                                    <Component 
+                                        match={props.match}
+                                        {...restProps}
+                                    />
+                                )
+
                         )}
                     />
                 )
@@ -51,7 +53,8 @@ class App extends Component {
         const {
 			mobileDetect,
 			isAuth,
-			matchedRoute,
+            matchedRoute,
+            loggedIn,
 			...restProps
         } = this.props;
         
@@ -61,7 +64,7 @@ class App extends Component {
         <React.Fragment>
             <Layout>
                 <AppContext.Provider value={{mobile: !!mobileDetect.mobile()}} >
-                    <RoutesComponent />
+                    <RoutesComponent loggedIn={loggedIn} />
                 </AppContext.Provider>
             </Layout>
         </React.Fragment>
@@ -69,8 +72,8 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = ({}) => ({
-
+const mapStateToProps = ({user}) => ({
+    loggedIn: user.loggedIn
 });
 
 const mapDispatchToProps = dispatch => ({

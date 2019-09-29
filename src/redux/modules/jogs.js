@@ -19,7 +19,10 @@ export const {
     updateJogFail,
     updateJogSuccess,
 
-    setCurrentJog
+    setCurrentJog,
+
+    setSortedJogs,
+    delSortedJogs
 
 } = createActions(
     'CLEAR_STATE',
@@ -40,7 +43,10 @@ export const {
     'UPDATE_JOG_FAIL',
     'UPDATE_JOG_SUCCESS',
 
-    'SET_CURRENT_JOG'
+    'SET_CURRENT_JOG',
+
+    'SET_SORTED_JOGS',
+    'DEL_SORTED_JOGS'
 
 );
 
@@ -55,7 +61,8 @@ const defaultState = {
         distance:'',
         time: '',
         date: ''
-    }
+    },
+    sorted: []
 };
 
 export default handleActions (
@@ -66,6 +73,7 @@ export default handleActions (
         }),
 
         [getJogs]: state => ({
+            ...state,
             error: null,
         }),
 
@@ -81,6 +89,7 @@ export default handleActions (
         }),
 
         [addJog]: state => ({
+            ...state,
             error: null
         }),
 
@@ -95,6 +104,7 @@ export default handleActions (
         }),
 
         [deleteJog]: state => ({
+            ...state,
             error: null
         }),
 
@@ -106,10 +116,10 @@ export default handleActions (
         [deleteJogSuccess]: (state, {payload}) => ({
             ...state,
             error: null
-
         }),
 
         [updateJog]: state => ({
+            ...state,
             error: null
         }),
 
@@ -126,6 +136,16 @@ export default handleActions (
         [setCurrentJog]: (state, {payload}) => ({
             ...state,
             current: payload
+        }),
+
+        [setSortedJogs]: (state, {payload}) => ({
+            ...state,
+            sorted: payload
+        }),
+
+        [delSortedJogs]: (state, {payload}) => ({
+            ...state,
+            sorted: []
         })
     },
     defaultState
