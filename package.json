@@ -7,7 +7,8 @@
     "build": "webpack --progress --colors",
     "start": "webpack-dev-server --progress --watch-poll",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "heroku-prebuild": "npm install --dev"
   },
   "author": "Ivan Goncharov",
   "license": "ISC",
@@ -16,7 +17,7 @@
     "axios": "^0.19.0",
     "camelcase-keys": "^6.0.1",
     "connected-react-router": "^6.5.0",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "formik": "^1.5.8",
     "history": "^4.9.0",
     "jss": "^9.8.7",
