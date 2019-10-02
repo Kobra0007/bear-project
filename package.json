@@ -8,7 +8,9 @@
     "start": "webpack-dev-server --progress --watch-poll",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "heroku-prebuild": "npm install --dev"
+    "heroku-prebuild": "npm install --dev",
+    "dev": "node server.js", 
+    "heroku-postbuild": "webpack -p"
   },
   "author": "Ivan Goncharov",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "express": "^4.17.1",
     "formik": "^1.5.8",
     "history": "^4.9.0",
+    "html-webpack-plugin": "^3.2.0",
     "jss": "^9.8.7",
     "mobile-detect": "^1.4.3",
     "moment": "^2.24.0",
